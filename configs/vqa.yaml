@@ -1,0 +1,23 @@
+train_file: ['D:/Transformer_VQA-main/dataset/pre/pre_train.json']
+test_file: ['D:/Transformer_VQA-main/dataset/pre/pre_test.json']
+test_with_label: True
+answer_list: 'D:/Transformer_VQA-main/dataset/vqa2/answer_list.json'
+#测试的时候 答案的范围
+#vqa_root: 'D:/Transformer_VQA-main/dataset/vqa/' #train2014/ #用来存图片的地方，图像的根目录
+pre_root: 'D:/Transformer_VQA-main/dataset/pre/'  #自己数据的目录
+#vg_root: '' #/export/share/datasets/vision/visual-genome/ #image/
+image_res: 384
+batch_size_train: 16  #32
+batch_size_test: 8  #16
+k_test: 128
+
+alpha: 0.4  #l= (1-a)l1 + a*momentaum
+distill: False #先不蒸馏
+warm_up: True
+
+eos: '[SEP]'
+
+bert_config: 'configs/bert_config.json'
+
+optimizer: {opt: adamW, lr: 2e-5, weight_decay: 0.02}
+schedular: {sched: cosine, lr: 2e-5, epochs: 1, min_lr: 1e-6, decay_rate: 1, warmup_lr: 1e-5, warmup_epochs: 4, cooldown_epochs: 0}
